@@ -22,19 +22,25 @@ Route::get('/alert', function(){
 
 
 
-//  Register 
-Route::get('/register', 'AuthController@registerGet');
-Route::post('/registerPost', 'AuthController@registerPost');
 
 
-//  Login 
-Route::get('login', [ 'as' => 'login', 'uses' => 'AuthController@loginGet']);
-Route::post('/loginPost', 'AuthController@loginPost');
-Route::get('/logout', 'AuthController@logout');
+Route::middleware('guest')->group(function () {
+    //  Register 
+    Route::get('/register', 'AuthController@registerGet');
+    Route::post('/registerPost', 'AuthController@registerPost');
+    
+    
+    //  Login 
+    Route::get('login', [ 'as' => 'login', 'uses' => 'AuthController@loginGet']);
+    Route::post('/loginPost', 'AuthController@loginPost');
+});
 
-// Post
+//  Post
 Route::get('/post/list', 'PostController@showList');
-Route::get('/post/create', 'PostController@createPostGet')->middleware('auth');
-Route::post('/post/like', 'PostController@likePost')->middleware('auth');
-Route::post('/post/dislike', 'PostController@dislikePost')->middleware('auth');
-Route::post('/post/createPost', 'PostController@createPost');
+Route::middleware('auth')->group(function () {
+    Route::get('/post/create', 'PostController@createPostGet');
+    Route::post('/post/like', 'PostController@likePost');
+    Route::post('/post/dislike', 'PostController@dislikePost');
+    Route::post('/post/createPost', 'PostController@createPost');
+    Route::get('/logout', 'AuthController@logout');
+});
