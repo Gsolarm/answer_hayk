@@ -1,36 +1,34 @@
     @include('auth.header')
-    <form action="registerPost" method="POST">
-        <h2>Registration</h2>
-        <div>
-            <label>Name:</label>
-            <input name="name" type="text">
-            <!-- show errors -->
-            @if($errors->has('name'))
-                <span>{{ $errors->first('name') }}</span>
+    <div class="login-form">
+        <form action="registerPost" method="POST">
+            <input type="hidden" name="_token" value="{{ Session::token() }}" />
+            <h2 class="text-center">Registration</h2>
+            <div class="form-group">
+                <input type="text" name="name" class="form-control" placeholder="Name" required="required">
+                @if($errors->has('name'))
+                    <span class="alert alert-danger">{{ $errors->first('name') }}</span>
+                @endif
+            </div>    
+            <div class="form-group">
+                <input type="email" name="email" class="form-control" placeholder="Email" required="required">
+                @if($errors->has('email'))
+                    <span class="alert alert-danger">{{ $errors->first('email') }}</span>
+                @endif
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" class="form-control" placeholder="Password" required="required">
+                @if($errors->has('password'))
+                    <span class="alert alert-danger">{{ $errors->first('password') }}</span>
+                @endif
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">Register</button>
+            </div>
+            @if (Session::get('info'))
+                <p class="alert alert-danger">{{Session::get('info')}}</p>
             @endif
-        </div>
-            
-        <div>
-            <label>Email Address:</label>
-            <input name="email" type="text">
-            <!-- show errors -->
-            @if($errors->has('email'))
-                <span>{{ $errors->first('email') }}</span>
-            @endif
-        </div>
-
-        <div>
-            <label>Password:</label>
-            <input name="password" type="password">
-            <!-- show errors -->
-            @if($errors->has('password'))
-                <span>{{ $errors->first('password') }}</span>
-            @endif
-        </div>
-
-        <input type="hidden" name="_token" value="{{ Session::token() }}" />
-
-        <button>Register</button>
-    </form>
+        </form>
+        <p class="text-center"><a href="/login">Already have an Account</a></p>
+    </div>
 </body>
 </html>
