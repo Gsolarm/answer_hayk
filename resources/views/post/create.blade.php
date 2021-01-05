@@ -1,25 +1,4 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Post</title>
-</head>
-<style>
-    form{
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto;
-        display: grid;
-        justify-content: center;
-        align-items: center;
-        height: 300px;
-        grid-template-rows: 50px 50px 50px 50px 50px;
-    }
-</style>
-<body>
+    @include('post.header')
     <form action="createPost" method="POST">
         <h2>Create Post</h2>
         <div>

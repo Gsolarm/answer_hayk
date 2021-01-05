@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'title', 'content'
     ];
+
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'post_likes','post_id','user_id');
+    }
 }

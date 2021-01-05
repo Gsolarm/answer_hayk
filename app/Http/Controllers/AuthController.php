@@ -45,12 +45,12 @@ class AuthController extends Controller
             return redirect()->back()->with('info', 'Invalid Email or Password');
         }
         
-        return redirect('home')->with('info', 'Welcome');
+        return redirect('post/list');
     }
 
     public function logout(){
         Auth::logout();
 
-        return redirect('login')->with('info', 'Come back Again.');
+        return redirect('login');
     }
 }

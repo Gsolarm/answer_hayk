@@ -1,0 +1,12 @@
+.post_item {
+    border: 1px solid black;
+    margin: 20px;
+    padding: 20px;
+}
+.post_like_dislike{
+    display: flex;
+}
+.post_like_dislike div{
+    margin-left: 20px;
+    cursor: pointer;
+}

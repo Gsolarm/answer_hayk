@@ -35,4 +35,6 @@ Route::get('/logout', 'AuthController@logout');
 // Post
 Route::get('/post/list', 'PostController@showList');
 Route::get('/post/create', 'PostController@createPostGet')->middleware('auth');
+Route::post('/post/like', 'PostController@likePost')->middleware('auth');
+Route::post('/post/dislike', 'PostController@dislikePost')->middleware('auth');
 Route::post('/post/createPost', 'PostController@createPost');
